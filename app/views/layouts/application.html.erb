@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manga-Read Comic Book Online</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <%= image_tag 'logo.png', alt: 'Logo', class: 'logo' %>
+      <h1>Manga/Anime</h1>
+      <div class="sign-in">
+        <% if Current.user %>
+        <div class="current-user">
+          <span><%= Current.user.username %></span>
+        </div>
+        <div class="current-user">
+          <%= button_to "Logout", logout_path, method: :delete, class: "head-link" %>
+        </div>
+        <% else %>
+        <div class="current-user">
+          <%= link_to "Sign Up", signup_path, class: "head-link" %>
+        </div>
+        <div class="current-user">
+          <%= link_to "Sign In", signin_path, class: "head-link" %>
+        </div>
+        <% end %>
+      </div>
+    </header>
+    <div class="main-content">
+      <nav class="left-navigation">
+        <ul>
+          <li><a href="#">Category</a></li>
+          <li><a href="#">Ranking</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </nav>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
